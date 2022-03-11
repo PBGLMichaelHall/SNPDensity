@@ -48,6 +48,10 @@ for (i in 1:14) {
 
 ![snakemake2](https://user-images.githubusercontent.com/93121277/157866998-6f668517-b410-4426-987b-91436dc1b865.png)
 
+# The Directed Acrylic Graph
+
+![dag4](https://user-images.githubusercontent.com/93121277/157867250-fef1a84d-d1fc-4a7c-90a8-2f9807e20816.png)
+
 
 
 # SNP Denisity Plots for Samples 1 - 14 against Control Sample 15
