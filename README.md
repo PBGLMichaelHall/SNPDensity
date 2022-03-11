@@ -5,6 +5,11 @@
 ![RiceHeader](https://user-images.githubusercontent.com/93121277/157856014-65cc5b6d-661b-4499-b82e-af6b3190f3f6.png)
 # Separate Samples with Control Sample 15
 ![Rice1_15](https://user-images.githubusercontent.com/93121277/157856783-73a6f621-7fa9-4972-999b-66edeb903bfd.png)
+# Inspect the Data Structure Tree
+
+![TREE](https://user-images.githubusercontent.com/93121277/157858372-a2b9b953-6913-4f2c-a2ae-9a9c6a6b7604.png)
+
+
 # Run the RScript
 ```{r cars}
 #Install rMVP package
