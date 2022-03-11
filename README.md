@@ -43,6 +43,12 @@ for (i in 1:14) {
 }
 
 ```
+
+# In a SNAKEMAKE Workflow pipeline
+
+![snakemake](https://user-images.githubusercontent.com/93121277/157866565-00d7feb7-08bb-4c28-8bd4-bfd34e235b9b.png)
+
+
 # SNP Denisity Plots for Samples 1 - 14 against Control Sample 15
 # Notice Chromosome 6 has magnitude of significance in TOTAL SNPs called
 ![SNP1](https://user-images.githubusercontent.com/93121277/157857578-1394e266-822e-4ae8-885c-79a80fdd5a50.png)
