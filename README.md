@@ -39,6 +39,7 @@ for (i in 1:14) {
 
 ```
 # SNP Denisity Plots for Samples 1 - 14 against Control Sample 15
+# Notice Chromosome 6 has magnitude of significance in TOTAL SNPs called
 ![SNP1](https://user-images.githubusercontent.com/93121277/157857578-1394e266-822e-4ae8-885c-79a80fdd5a50.png)
 ![SNP2](https://user-images.githubusercontent.com/93121277/157857581-2e4737b6-a004-404f-abec-a0c3beac40e0.png)
 ![SNP3](https://user-images.githubusercontent.com/93121277/157857586-b0ddf88f-dc03-4de4-a5b4-1e32db6585c9.png)
