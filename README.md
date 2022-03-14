@@ -44,6 +44,13 @@ for (i in 1:14) {
 
 ```
 
+# The Snakemake file
+
+
+![snakemakefile](https://user-images.githubusercontent.com/93121277/158157131-90f1f903-5988-4266-87ac-517dad272c04.png)
+
+
+
 # In a SNAKEMAKE Workflow pipeline
 
 ![snakemake2](https://user-images.githubusercontent.com/93121277/157866998-6f668517-b410-4426-987b-91436dc1b865.png)
