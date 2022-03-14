@@ -6,8 +6,8 @@
 # Separate Samples with Control Sample 15
 ![Rice1_15](https://user-images.githubusercontent.com/93121277/157856783-73a6f621-7fa9-4972-999b-66edeb903bfd.png)
 # Inspect the Data Structure Tree
+![tree7](https://user-images.githubusercontent.com/93121277/158134352-4bf5352a-63d6-463f-9993-4bdb32bc8be5.png)
 
-![TREE](https://user-images.githubusercontent.com/93121277/157858372-a2b9b953-6913-4f2c-a2ae-9a9c6a6b7604.png)
 
 
 # Run the RScript
