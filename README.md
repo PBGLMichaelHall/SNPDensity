@@ -1,3 +1,5 @@
+# Inspect the Data Structure Tree
+![tree9](https://user-images.githubusercontent.com/93121277/158329889-1a9870e3-e656-4de3-94d7-4c3176136a43.png)
 # SNPDensity[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8109884/Total.pdf)
 # VCF File Header UpStream Filtering 
 ![Rice_UpstreamFiltering](https://user-images.githubusercontent.com/93121277/157855864-b4fa542c-3aae-4885-a098-e40038e0d592.png)
@@ -5,8 +7,8 @@
 ![RiceHeader](https://user-images.githubusercontent.com/93121277/157856014-65cc5b6d-661b-4499-b82e-af6b3190f3f6.png)
 # Separate Samples with Control Sample 15
 ![Rice1_15](https://user-images.githubusercontent.com/93121277/157856783-73a6f621-7fa9-4972-999b-66edeb903bfd.png)
-# Inspect the Data Structure Tree
-![tree7](https://user-images.githubusercontent.com/93121277/158134352-4bf5352a-63d6-463f-9993-4bdb32bc8be5.png)
+
+
 
 
 
@@ -46,18 +48,20 @@ for (i in 1:14) {
 
 # The Snakemake file
 
-
-![snakemakefile](https://user-images.githubusercontent.com/93121277/158157131-90f1f903-5988-4266-87ac-517dad272c04.png)
+![snakemakefile2](https://user-images.githubusercontent.com/93121277/158329199-8de5b090-77ab-4bb8-ab2a-6cac8be26441.png)
 
 
 
 # In a SNAKEMAKE Workflow pipeline
 
-![snakemake2](https://user-images.githubusercontent.com/93121277/157866998-6f668517-b410-4426-987b-91436dc1b865.png)
+
+![JobStatus](https://user-images.githubusercontent.com/93121277/158328868-f1b2cc6d-3c10-4f08-a571-a3be494d0f6b.png)
+
 
 # The Directed Acrylic Graph
 
-![dag4](https://user-images.githubusercontent.com/93121277/157867250-fef1a84d-d1fc-4a7c-90a8-2f9807e20816.png)
+![DAG](https://user-images.githubusercontent.com/93121277/158328677-4f7e59be-fb09-42b3-ab7e-29736a17772a.png)
+
 
 
 
