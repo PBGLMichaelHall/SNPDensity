@@ -1,5 +1,7 @@
 # Inspect the Data Structure Tree
-![tree9](https://user-images.githubusercontent.com/93121277/158329889-1a9870e3-e656-4de3-94d7-4c3176136a43.png)
+![Screenshot from 2022-03-17 12-04-14](https://user-images.githubusercontent.com/93121277/158795850-9e278cf4-0f2f-454a-bbab-695152805fd6.png)
+
+
 # SNPDensity[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8109884/Total.pdf)
 # VCF File Header UpStream Filtering 
 ![Rice_UpstreamFiltering](https://user-images.githubusercontent.com/93121277/157855864-b4fa542c-3aae-4885-a098-e40038e0d592.png)
@@ -128,7 +130,8 @@ system(z)
 
 # The Snakemake file
 
-![snakemakefile2](https://user-images.githubusercontent.com/93121277/158329199-8de5b090-77ab-4bb8-ab2a-6cac8be26441.png)
+![Screenshot from 2022-03-17 12-05-07](https://user-images.githubusercontent.com/93121277/158795986-1ba0e575-4fc5-45b2-a6ff-2192a59eb311.png)
+
 
 
 
