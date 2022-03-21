@@ -2,8 +2,6 @@
 ![Screenshot from 2022-03-21 16-08-51](https://user-images.githubusercontent.com/93121277/159290869-30802323-21b5-401a-94e7-6c4a5f1c8c1d.png)
 
 
-# The final output of the workflow
-[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8316366/Total.pdf)
 
 
 
@@ -330,6 +328,9 @@ MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "
 
 
 
+
+# The final output of the workflow from Sample 1 to Sample 14 in descending order
+[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8316612/Total.pdf)
 
 
 
