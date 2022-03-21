@@ -1,5 +1,6 @@
 # Inspect the Data Structure Tree
-![Screenshot from 2022-03-21 15-43-28](https://user-images.githubusercontent.com/93121277/159285680-e44cea90-8c9a-4b4d-a98f-a176dfff9f6e.png)
+![Screenshot from 2022-03-21 16-08-51](https://user-images.githubusercontent.com/93121277/159290869-30802323-21b5-401a-94e7-6c4a5f1c8c1d.png)
+
 
 # The final output of the workflow
 [Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8316366/Total.pdf)
@@ -13,8 +14,8 @@
 # Separate Samples with Control Sample 15
 ![Rice1_15](https://user-images.githubusercontent.com/93121277/157856783-73a6f621-7fa9-4972-999b-66edeb903bfd.png)
 
+# RUN the R Script from Snakemake workflow
 ```r
-# Run the RScript
 library(magick)
 library(vcfR)
 library(rMVP)
@@ -289,26 +290,44 @@ message("Reading MVP Data 13")
 df <- read.table(file = dffile, header=TRUE)
 message("Making SNP Density Plots")
 MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S14"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S14~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 14")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 14")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
 ```
 
 # The Snakemake file
 
-![Screenshot from 2022-03-21 15-31-27](https://user-images.githubusercontent.com/93121277/159283304-75bea6a8-f981-429a-acbd-bfa01fef3919.png)
 
-
-
+![Screenshot from 2022-03-21 16-13-01](https://user-images.githubusercontent.com/93121277/159291703-47df8d41-9a6b-4f10-a7c9-d7a44a6e18e3.png)
 
 
 # In a SNAKEMAKE Workflow pipeline
 
-![Screenshot from 2022-03-21 15-45-33](https://user-images.githubusercontent.com/93121277/159286088-f5fad339-35ab-4fc7-b487-ed806f55dcc7.png)
 
+![Screenshot from 2022-03-21 16-13-58](https://user-images.githubusercontent.com/93121277/159291848-757ea783-422c-4079-9551-5d695075ddbd.png)
 
 
 
 # The Directed Acrylic Graph
+![Screenshot from 2022-03-21 16-14-53](https://user-images.githubusercontent.com/93121277/159292012-ceddf55d-2502-48e6-8f4a-341b97d226ee.png)
 
-![Screenshot from 2022-03-21 15-33-10](https://user-images.githubusercontent.com/93121277/159283634-c2a41398-1326-4779-883b-eba93ca40778.png)
 
 
 
