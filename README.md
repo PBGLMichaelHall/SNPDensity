@@ -1,8 +1,11 @@
 # Inspect the Data Structure Tree
-![Screenshot from 2022-03-17 12-04-14](https://user-images.githubusercontent.com/93121277/158795850-9e278cf4-0f2f-454a-bbab-695152805fd6.png)
+![Screenshot from 2022-03-21 15-43-28](https://user-images.githubusercontent.com/93121277/159285680-e44cea90-8c9a-4b4d-a98f-a176dfff9f6e.png)
+
+# The final output of the workflow
+[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8316366/Total.pdf)
 
 
-# SNPDensity[Total.pdf](https://github.com/PBGLMichaelHall/SNPDensity/files/8109884/Total.pdf)
+
 # VCF File Header UpStream Filtering 
 ![Rice_UpstreamFiltering](https://user-images.githubusercontent.com/93121277/157855864-b4fa542c-3aae-4885-a098-e40038e0d592.png)
 # VCF File Header with Samples Listed
@@ -10,51 +13,8 @@
 # Separate Samples with Control Sample 15
 ![Rice1_15](https://user-images.githubusercontent.com/93121277/157856783-73a6f621-7fa9-4972-999b-66edeb903bfd.png)
 
-
-# Decompress the Separated VCF Files
-
 ```r
-
-
-library(R.utils)
-message("SETTING WORKING DIRECTORY")
-setwd("/home/michael/Desktop/SNPVCFPRACTICE")
-
-
-message("CALLING THE DECOMPRESS FUNCTION IN R")
-Decompress <- function(file){
-vcf <- gunzip(file,remove=FALSE)
-return(vcf)
-}
-
-
-
-Decompress(snakemake@input[[1]])
-Decompress(snakemake@input[[2]])
-Decompress(snakemake@input[[3]])
-Decompress(snakemake@input[[4]])
-Decompress(snakemake@input[[5]])
-Decompress(snakemake@input[[6]])
-Decompress(snakemake@input[[7]])
-Decompress(snakemake@input[[8]])
-Decompress(snakemake@input[[9]])
-Decompress(snakemake@input[[10]])
-Decompress(snakemake@input[[11]])
-Decompress(snakemake@input[[12]])
-Decompress(snakemake@input[[13]])
-
-
-message("PREPARING TO REMOVE GUNZIPPED FILES FROM DIRECTORY")
-#Decompress the VCF files
-setwd("/home/michael/Desktop/SNPVCFPRACTICE/VCF/")
-x <- 'rm *.gz'
-system(x)
-
-q()
-
-```
 # Run the RScript
-```r
 library(magick)
 library(vcfR)
 library(rMVP)
@@ -64,86 +24,292 @@ setwd("/home/michael/Desktop/SNPVCFPRACTICE")
 message("Calling MVP Data function on all decompressed variant calls")
 
 #Call the MVP Data function
-message("Calling the MVP for Loop function on all samples 1 - 13")
+message("Calling the MVP function")
 
-Loop <- function(file,sample){
-sample<-sample
-pathtosample <- file
+
+sample<-"S1"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S1~HOM-VAR.vcf"
 out<- paste0("mvp.",sample,".vcf")
 memo<-paste0(sample)
 dffile<-paste0("mvp.",sample,".vcf.geno.map")
 
+message("Making MVP data S1")
 MVP.Data(fileVCF=pathtosample,
            #filePhe="Phenotype.txt",
            fileKin=FALSE,
            filePC=FALSE,
            out=out
 )
-
+message("Reading MVP Data S1")
 df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
 MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
 
-}
 
+sample<-"S2"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S2~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
 
-Loop(snakemake@input[[1]],"S1")
-Loop(snakemake@input[[2]],"S2")
-Loop(snakemake@input[[3]],"S3")
-Loop(snakemake@input[[4]],"S4")
-Loop(snakemake@input[[5]],"S5")
-Loop(snakemake@input[[6]],"S6")
-Loop(snakemake@input[[7]],"S7")
-Loop(snakemake@input[[8]],"S8")
-Loop(snakemake@input[[9]],"S9")
-Loop(snakemake@input[[10]],"S10")
-Loop(snakemake@input[[11]],"S11")
-Loop(snakemake@input[[12]],"S12")
-Loop(snakemake@input[[13]],"S13")
-
-
-
-
-message("CONVERTING JPG IMAGES TO PNG IMAGES")
-#Convert .jpg image to png image
-
-for (i in 1:13){
-snp<-image_read(paste0("S",i,".SNP_Density.jpg"))
-image <- image_convert(image = snp, "png")
-image_write(image,paste0("S",i,".SNP_Density.png",format = "png"))
-}
-
-message("MAKING FINAL PDF REPORT")
-
-y <- 'convert S1.SNP_Density.png S2.SNP_Density.png  S3.SNP_Density.png
- S4.SNP_Density.png  S5.SNP_Density.png  S6.SNP_Density.png  S7.SNP_Density.png
- S8.SNP_Density.png  S9.SNP_Density.png  S10.SNP_Density.png
- S11.SNP_Density.png  S12.SNP_Density.png  S13.SNP_Density.png Total.pdf'
-
-system(y)
-
-z <- 'rm *.map *.ind *.bin *.desc'
-system(z)
+message("Making MVP data S2")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data S2")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
 
 
 
+
+
+sample<-"S3"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S3~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 3")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 3")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S4"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S4~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 4")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 4")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+
+
+
+sample<-"S5"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S5~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 5")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 5")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S6"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S6~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 6")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 6")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+
+
+
+sample<-"S7"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S7~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 7")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 7")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S8"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S8~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 8")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 8")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+
+
+sample<-"S9"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S9~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 9")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 9")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+
+
+
+sample<-"S10"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S10~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 10")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 10")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S11"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S11~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 11")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 11")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+
+
+
+sample<-"S12"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S12~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 12")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 12")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
+
+
+sample<-"S13"
+pathtosample <- "VCF/freebayes~bwa~IRGSP-1.0~S13~HOM-VAR.vcf"
+out<- paste0("mvp.",sample,".vcf")
+memo<-paste0(sample)
+dffile<-paste0("mvp.",sample,".vcf.geno.map")
+
+message("Making MVP data 13")
+MVP.Data(fileVCF=pathtosample,
+           #filePhe="Phenotype.txt",
+           fileKin=FALSE,
+           filePC=FALSE,
+           out=out
+)
+message("Reading MVP Data 13")
+df <- read.table(file = dffile, header=TRUE)
+message("Making SNP Density Plots")
+MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "red"), memo = memo, file.type = "jpg", dpi=300)
 ```
 
 # The Snakemake file
 
-![Screenshot from 2022-03-17 12-05-07](https://user-images.githubusercontent.com/93121277/158795986-1ba0e575-4fc5-45b2-a6ff-2192a59eb311.png)
+![Screenshot from 2022-03-21 15-31-27](https://user-images.githubusercontent.com/93121277/159283304-75bea6a8-f981-429a-acbd-bfa01fef3919.png)
+
 
 
 
 
 # In a SNAKEMAKE Workflow pipeline
 
+![Screenshot from 2022-03-21 15-45-33](https://user-images.githubusercontent.com/93121277/159286088-f5fad339-35ab-4fc7-b487-ed806f55dcc7.png)
 
-![JobStatus](https://user-images.githubusercontent.com/93121277/158328868-f1b2cc6d-3c10-4f08-a571-a3be494d0f6b.png)
+
 
 
 # The Directed Acrylic Graph
 
-![DAG](https://user-images.githubusercontent.com/93121277/158328677-4f7e59be-fb09-42b3-ab7e-29736a17772a.png)
+![Screenshot from 2022-03-21 15-33-10](https://user-images.githubusercontent.com/93121277/159283634-c2a41398-1326-4779-883b-eba93ca40778.png)
+
 
 
 
