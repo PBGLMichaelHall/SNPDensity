@@ -1,3 +1,58 @@
+# Plot Guanine and Cytosine Content per FASTA read
+
+
+```r
+library(seqinr)
+
+Seqs <- read.fasta("GCF0014339351IRGSPgenomic.fasta")
+length(Seqs)
+[1] 58
+```
+
+# There are 58 FASTA reads and we will look at the second and third read to determine and plot Guanine and Cytosine Content 
+
+```r
+SeqsSeq <- Seqs[[2]]
+SeqsSeq2 <- Seqs[[3]]
+
+slidingwindowplot <- function(windowsize, inputseq)
+{
+  starts <- seq(1, length(inputseq)-windowsize, by = windowsize)
+  n <- length(starts)
+  chunkGCs <- numeric(n)
+  for (i in 1:n) {
+    chunk <- inputseq[starts[i]:(starts[i]+windowsize-1)]
+    chunkGC <- GC(chunk)
+    chunkGCs[i] <- chunkGC
+  }
+  plot(starts,chunkGCs,type="b",col="black",xlab="Nucleotide start position",ylab="GC content")
+  abline(a=mean(chunkGCs),b =0,col="red",lwd=3)
+}
+
+par(mfrow=c(2,1))
+slidingwindowplot(windowsize = 200000, SeqsSeq)
+slidingwindowplot(windowsize = 200000, SeqsSeq2)
+```
+
+![Screenshot from 2022-04-05 12-08-21](https://user-images.githubusercontent.com/93121277/161731271-33d5475e-f72b-445c-882b-073cd0807cb7.png)
+
+# Quality Control and Number of SNPs called in a sliding window
+
+```r
+#Chinese Rice 
+
+setwd("/home/michael/Desktop/GenomicVis")
+file <- "freebayes~bwa~IRGSP-1.0~all-mutants-minus-S14~QUAL1000-S15-HOMREF.vcf"
+Chrom <- c("NC_029256.1","NC_029257.1","NC_029258.1","NC_029259.1","NC_029260.1","NC_029261.1","NC_029262.1","NC_029263.1","NC_029264.1","NC_029265.1","NC_029266.1","NC_029267.1")
+ChromQual(file =file,chromlist = Chrom, windowSize = 1e+05, HighLimQuality = 8000, scalar = 1,ncol=12,binwidth1 = 100,binwidth2 = 1,p1=TRUE,p2=TRUE,p3=TRUE,p4=TRUE,p5=TRUE )
+
+```
+![Screenshot from 2022-04-05 12-21-10](https://user-images.githubusercontent.com/93121277/161733426-f42972f2-2987-49bb-86d2-6ccbd8ca7d60.png)
+![Screenshot from 2022-04-05 12-20-43](https://user-images.githubusercontent.com/93121277/161733427-36dc4ac1-da2b-4228-8457-66f07a7d60bb.png)
+![Screenshot from 2022-04-05 12-20-30](https://user-images.githubusercontent.com/93121277/161733429-690933d7-8875-47af-a8db-6da05561ccef.png)
+![Screenshot from 2022-04-05 12-20-19](https://user-images.githubusercontent.com/93121277/161733432-1cdfd7c1-5635-4881-bfe3-5b8302c93942.png)
+
+
 # Inspect the Data Structure Tree
 ![Screenshot from 2022-03-21 16-08-51](https://user-images.githubusercontent.com/93121277/159290869-30802323-21b5-401a-94e7-6c4a5f1c8c1d.png)
 
