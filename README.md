@@ -71,6 +71,47 @@ Correlation(file=file,chromlist = Chrom,p1=TRUE,p2=TRUE,p3=TRUE,p4=TRUE,p5=TRUE)
 
 ![Screenshot from 2022-04-06 09-41-18](https://user-images.githubusercontent.com/93121277/161922114-7289310f-3586-4fda-873e-b9046d77447b.png)
 
+# Plotting total Depths for each sample
+
+```r
+
+library(vcfR)
+#Please refer to powerpoint for more
+https://trapa.cz/sites/default/files/r_mol_data_phylogen_2.pdf
+
+
+setwd("/home/michael/Desktop/GenomicVis")
+rice.vcf <- read.vcfR(file = "freebayes~bwa~IRGSP-1.0~all-mutants-minus-S14~QUAL1000-S15-HOMREF.vcf")
+strwrap(x=grep(pattern="ID=DP,", x =rice.vcf@meta, value = TRUE))
+rice.vcf.dp <- extract.gt(x=rice.vcf,element = "DP", as.numeric = TRUE)
+dim(rice.vcf.dp)
+head(rice.vcf.dp)
+boxplot(x=rice.vcf.dp, col="red",ylab="Depth of coverage",las=3,pch=19)
+title("DP per specimen")
+
+barplot(apply(X=rice.vcf.dp,MARGIN=2,FUN=mean, na.rm=TRUE),las=3)
+title("Mean DP per specimen")
+heatmap.bp(x=rice.vcf.dp[1:3000,1:14],col.ramp = rainbow(n=14,start=0.1))
+
+# Heat map for first 30 variants called
+heatmap.bp(x=rice.vcf.dp[1:30,1:14],col.ramp = rainbow(n=14,start=0.1))
+
+
+```
+
+# Heat map for the first 30 Variants for each sample
+![Screenshot from 2022-04-06 11-18-05](https://user-images.githubusercontent.com/93121277/161941926-099e5c13-3c37-4d94-a7ef-a8542505ea61.png)
+
+# Heat map for most of the variants called
+![Screenshot from 2022-04-06 11-17-46](https://user-images.githubusercontent.com/93121277/161941934-c4957b5d-9881-4037-b907-6c2cdfb1efa5.png)
+
+# Average Total Depth Coverage Per Sample
+![Screenshot from 2022-04-06 11-17-25](https://user-images.githubusercontent.com/93121277/161941937-c3af52b8-4294-46b0-98c9-834ca5776616.png)
+
+# Depth Calls per sample
+![Screenshot from 2022-04-06 11-17-05](https://user-images.githubusercontent.com/93121277/161941940-d25a0d11-2e9e-49d0-86ca-0fd1b02a8c23.png)
+
+
 
 # Inspect the Data Structure Tree
 ![Screenshot from 2022-03-21 16-08-51](https://user-images.githubusercontent.com/93121277/159290869-30802323-21b5-401a-94e7-6c4a5f1c8c1d.png)
