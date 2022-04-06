@@ -48,8 +48,14 @@ ChromQual(file =file,chromlist = Chrom, windowSize = 1e+05, HighLimQuality = 800
 
 ```
 ![Screenshot from 2022-04-05 12-21-10](https://user-images.githubusercontent.com/93121277/161733426-f42972f2-2987-49bb-86d2-6ccbd8ca7d60.png)
+
+# SNP Quality Scores with Loess smoothing curve
 ![Screenshot from 2022-04-05 12-20-43](https://user-images.githubusercontent.com/93121277/161733427-36dc4ac1-da2b-4228-8457-66f07a7d60bb.png)
+
+# Histogram Number of SNPs Called in sliding window
 ![Screenshot from 2022-04-05 12-20-30](https://user-images.githubusercontent.com/93121277/161733429-690933d7-8875-47af-a8db-6da05561ccef.png)
+
+# Histogram of Quality Scores
 ![Screenshot from 2022-04-05 12-20-19](https://user-images.githubusercontent.com/93121277/161733432-1cdfd7c1-5635-4881-bfe3-5b8302c93942.png)
 
 
