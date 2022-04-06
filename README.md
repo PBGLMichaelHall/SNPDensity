@@ -61,6 +61,11 @@ ChromQual(file =file,chromlist = Chrom, windowSize = 1e+05, HighLimQuality = 800
 
 # Run a Correlation Analysis on some Key Variables
 
+```r
+Correlation(file=file,chromlist = Chrom,p1=TRUE,p2=TRUE,p3=TRUE,p4=TRUE,p5=TRUE)
+
+```
+
 ![Screenshot from 2022-04-06 09-41-18](https://user-images.githubusercontent.com/93121277/161922114-7289310f-3586-4fda-873e-b9046d77447b.png)
 
 
