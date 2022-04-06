@@ -62,6 +62,9 @@ ChromQual(file =file,chromlist = Chrom, windowSize = 1e+05, HighLimQuality = 800
 # Run a Correlation Analysis on some Key Variables
 
 ```r
+setwd("/home/michael/Desktop/GenomicVis")
+file <- "freebayes~bwa~IRGSP-1.0~all-mutants-minus-S14~QUAL1000-S15-HOMREF.vcf"
+Chrom <- c("NC_029256.1","NC_029257.1","NC_029258.1","NC_029259.1","NC_029260.1","NC_029261.1","NC_029262.1","NC_029263.1","NC_029264.1","NC_029265.1","NC029266.1","NC_029267.1")
 Correlation(file=file,chromlist = Chrom,p1=TRUE,p2=TRUE,p3=TRUE,p4=TRUE,p5=TRUE)
 
 ```
