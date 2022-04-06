@@ -59,6 +59,11 @@ ChromQual(file =file,chromlist = Chrom, windowSize = 1e+05, HighLimQuality = 800
 ![Screenshot from 2022-04-05 12-20-19](https://user-images.githubusercontent.com/93121277/161733432-1cdfd7c1-5635-4881-bfe3-5b8302c93942.png)
 
 
+# Run a Correlation Analysis on some Key Variables
+
+![Screenshot from 2022-04-06 09-41-18](https://user-images.githubusercontent.com/93121277/161922114-7289310f-3586-4fda-873e-b9046d77447b.png)
+
+
 # Inspect the Data Structure Tree
 ![Screenshot from 2022-03-21 16-08-51](https://user-images.githubusercontent.com/93121277/159290869-30802323-21b5-401a-94e7-6c4a5f1c8c1d.png)
 
