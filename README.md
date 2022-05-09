@@ -580,3 +580,6 @@ write.table(df99, file = "Varaints.csv",sep=",")
 
 ![Screenshot from 2022-05-09 12-49-40](https://user-images.githubusercontent.com/93121277/167395509-11c0401a-a241-4334-90e9-0ae0f61384b4.png)
 
+# We can infer from this analysis that chromosomes 1,5, and 12, while they have SNPs, do not all share a common one.
+# Chrosome 6 has the most shared Insertions/Deletions and SNPs in either the intron region associated with gene LOC9270017 or in a promoter region associated with gen LOC107276875 and LOC107281325 and LOC107281374 and LOC 4341167! 
+
