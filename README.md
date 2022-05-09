@@ -583,3 +583,16 @@ write.table(df99, file = "Varaints.csv",sep=",")
 # We can infer from this analysis that chromosomes 1,5, and 12, while they have SNPs, do not all share a common one.
 # Chrosome 6 has the most shared Insertions/Deletions and SNPs in either the intron region associated with gene LOC9270017 or in a promoter region associated with gen LOC107276875 and LOC107281325 and LOC107281374 and LOC 4341167! 
 
+# Now I want to filter the first VCF file eliminating Sample 15 and calling only Biallelic SNPs which are homozygous recessive.
+# This is done through bcftools view and bcftools filter
+# After filtering there are 50 Pure SNPs remaining.
+
+
+![Screenshot from 2022-05-09 13-57-58](https://user-images.githubusercontent.com/93121277/167405650-12f06a2c-8344-45f0-8f69-7c889d16e9b9.png)
+
+
+![Screenshot from 2022-05-09 13-59-56](https://user-images.githubusercontent.com/93121277/167405628-f0b3fb2e-65be-49dd-ab7d-2674b0bb1d02.png)
+
+# So I remap them back to RMVP visual aid
+
+
