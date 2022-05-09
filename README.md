@@ -571,7 +571,8 @@ str(df99)
 write.table(df99, file = "Varaints.csv",sep=",")
 
 ```
-![Variants](https://user-images.githubusercontent.com/93121277/167372792-2f67d0db-c9f0-4e2b-919d-366728ac9e54.png)
+![Screenshot from 2022-05-09 12-22-50](https://user-images.githubusercontent.com/93121277/167391343-6ffc796a-50ad-4af1-83af-df58bfc99688.png)
+
 
 
 
