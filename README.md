@@ -460,3 +460,118 @@ MVP.Report.Density(df[,c(1:3)], bin.size = 10000000, col = c("blue", "yellow", "
 ![SNP7](https://user-images.githubusercontent.com/93121277/157857599-de6c6cf6-a664-46fa-9fd9-61a4b40abc8c.png)
 ![SNP8](https://user-images.githubusercontent.com/93121277/157857601-54026508-1cc6-4028-8467-e8647cd93b7b.png)
 
+
+# I removed Homozygous Reference and then performed the command
+![Nohomozygous](https://user-images.githubusercontent.com/93121277/167374710-4ecf4e15-2cbd-4805-9411-2cc48c4494e2.png)
+
+# Then I filtered for Homozygous Alternates with this command
+
+![command](https://user-images.githubusercontent.com/93121277/167374892-13df81b8-8361-483f-b3ae-01e6efbf3729.png)
+
+# Now, I run this command to find how many varaints they all share in common
+
+![64](https://user-images.githubusercontent.com/93121277/167375251-2a731a1a-3e6a-47c3-90a4-a1d382223c1f.png)
+
+# Finally, I run this R Script to better classify what these varaints are in the genome
+
+
+
+
+
+```r
+setwd("/home/michael/Desktop/GenomicVis")
+
+
+library(vcfR)
+library(VariantAnnotation)
+library(GenomicFeatures)
+
+vcf <- readVcf(file = "HomozygousRecessive.vcf")
+
+rd <- rowRanges(vcf)
+
+# convert annotations to TxDb object
+GFFTXB<-makeTxDbFromGFF(file="GCF_001433935.1_IRGSP-1.0_genomic.gff")
+
+
+
+#Locate Variants
+loc <- locateVariants(rd, GFFTXB, AllVariants())
+
+
+
+#How many variants were called in coding locations
+length(loc)
+
+#92
+
+# Locate Coding Variants
+loc2 <- locateVariants(rd, GFFTXB, CodingVariants())
+*genetic variants that lead to changes in the sequence of amino-acid residues in the encoded protein*
+  
+  
+length(loc2)
+
+#0
+
+loc3 <- locateVariants(rd, GFFTXB, IntergenicVariants())
+*An intergenic region (IGR) is a stretch of DNA sequences located between genes.[1] Intergenic regions are a subset of noncoding DNA. 
+*Occasionally some intergenic DNA acts to control genes nearby, but most of it has no currently known function. It is one of the DNA sequences sometimes referred to as junk DNA, 
+length(loc3)
+
+#58
+
+
+*In genetics, a promoter is a sequence of DNA to which proteins bind to initiate transcription of a single RNA transcript from the DNA downstream of the promoter.
+
+loc4 <- locateVariants(rd, GFFTXB, PromoterVariants())
+
+length(loc4)
+
+#8
+
+loc5 <- locateVariants(rd, GFFTXB, FiveUTRVariants())
+
+* is the region of a messenger RNA (mRNA) that is directly upstream from the initiation codon. 
+
+length(loc5)
+
+#1
+
+loc6 <- locateVariants(rd, GFFTXB, ThreeUTRVariants())
+
+length(loc6)
+
+#0
+
+loc7 <- locateVariants(rd, GFFTXB, SpliceSiteVariants())
+
+length(loc7)
+
+#0
+
+Ranges <- loc@ranges
+class(Ranges)
+Ranges<-as.data.frame(Ranges)
+class(Ranges)
+Location <- loc@elementMetadata$LOCATION
+class(Location)
+Location <- as.data.frame(Location)
+class(Location)
+GENEID <- loc@elementMetadata@listData$GENEID
+class(GENEID)
+GENEID <- as.data.frame(GENEID)
+
+df99 <- cbind(Ranges,Location,GENEID)
+df99 <- as.data.frame(df99)
+class(df99)
+str(df99)
+
+
+write.table(df99, file = "Varaints.csv",sep=",")
+
+```
+![Variants](https://user-images.githubusercontent.com/93121277/167372792-2f67d0db-c9f0-4e2b-919d-366728ac9e54.png)
+
+
+
