@@ -576,4 +576,7 @@ write.table(df99, file = "Varaints.csv",sep=",")
 ![Screenshot from 2022-05-09 12-48-07](https://user-images.githubusercontent.com/93121277/167395229-998d6bc1-0cd0-40ae-b151-14c28933c9f8.png)
 
 
+# Sort by whether or not the SNP or INDEL is associated with a gene
+
+![Screenshot from 2022-05-09 12-49-40](https://user-images.githubusercontent.com/93121277/167395509-11c0401a-a241-4334-90e9-0ae0f61384b4.png)
 
