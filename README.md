@@ -572,8 +572,8 @@ write.table(df99, file = "Varaints.csv",sep=",")
 
 ```
 
-![Screenshot from 2022-05-09 12-34-07](https://user-images.githubusercontent.com/93121277/167393118-0db6f535-89d9-4847-a840-44f5fc461ef5.png)
 
+![Screenshot from 2022-05-09 12-48-07](https://user-images.githubusercontent.com/93121277/167395229-998d6bc1-0cd0-40ae-b151-14c28933c9f8.png)
 
 
 
